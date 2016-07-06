@@ -35,6 +35,11 @@ func (a *API) Co() *CommitteeResource {
 	return &CommitteeResource{Name: "committee", api: a}
 }
 
+// Cm returns a CommitteeMemberResource
+func (a *API) Cm() *CommitteeMemberResource {
+	return &CommitteeMemberResource{Name: "committee_member", api: a}
+}
+
 func (a *API) buildFilterQuery(filters Q) string {
 	// Check to see if we even have filters to build
 	if len(filters) < 1 {
