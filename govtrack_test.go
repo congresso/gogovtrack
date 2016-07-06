@@ -55,3 +55,19 @@ func TestCo(t *testing.T) {
 		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(CommitteeResource)), reflect.TypeOf(co))
 	}
 }
+
+func TestCs(t *testing.T) {
+	co := testAPI.Cs()
+
+	if reflect.TypeOf(co) != reflect.TypeOf(new(CosponsorshipResource)) {
+		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(CommitteeResource)), reflect.TypeOf(co))
+	}
+}
+
+func TestPr(t *testing.T) {
+	co := testAPI.Pr()
+
+	if reflect.TypeOf(co) != reflect.TypeOf(new(PersonResource)) {
+		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(PersonResource)), reflect.TypeOf(co))
+	}
+}

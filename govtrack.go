@@ -45,6 +45,11 @@ func (a *API) Cs() *CosponsorshipResource {
 	return &CosponsorshipResource{Name: "cosponsorship", api: a}
 }
 
+// Pr returns a PersonResource
+func (a *API) Pr() *PersonResource {
+	return &PersonResource{Name: "person", api: a}
+}
+
 func (a *API) buildFilterQuery(filters Q) string {
 	// Check to see if we even have filters to build
 	if len(filters) < 1 {

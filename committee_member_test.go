@@ -9,7 +9,7 @@ func cm() *CommitteeMemberResource {
 func TestCommitteeMemberFilter(t *testing.T) {
 	query := Q{"id": "1", "limit": "200"}
 
-	cr := c().Filter(query)
+	cr := cm().Filter(query)
 
 	if cr.Filters == nil {
 		t.Error("Expected bill resource filters to not be nil")
