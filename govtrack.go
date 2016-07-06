@@ -55,6 +55,11 @@ func (a *API) Rr() *RoleResource {
 	return &RoleResource{Name: "role", api: a}
 }
 
+// Vv returns a VoteVoterResource
+func (a *API) Vv() *VoteVoterResource {
+	return &VoteVoterResource{Name: "vote_voter", api: a}
+}
+
 func (a *API) buildFilterQuery(filters Q) string {
 	// Check to see if we even have filters to build
 	if len(filters) < 1 {
