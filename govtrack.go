@@ -40,6 +40,11 @@ func (a *API) Cm() *CommitteeMemberResource {
 	return &CommitteeMemberResource{Name: "committee_member", api: a}
 }
 
+// Cs returns a CosponsorshipResource
+func (a *API) Cs() *CosponsorshipResource {
+	return &CosponsorshipResource{Name: "cosponsorship", api: a}
+}
+
 func (a *API) buildFilterQuery(filters Q) string {
 	// Check to see if we even have filters to build
 	if len(filters) < 1 {

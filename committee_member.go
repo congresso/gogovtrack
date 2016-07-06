@@ -63,10 +63,10 @@ func (c *CommitteeMemberResource) One(id string) (*CommitteeMemberResponse, erro
 		return nil, err
 	}
 
-	var br *CommitteeMemberResponse
-	if err := json.NewDecoder(resp.Body).Decode(&br); err != nil {
+	var cm *CommitteeMemberResponse
+	if err := json.NewDecoder(resp.Body).Decode(&cm); err != nil {
 		return nil, err
 	}
 
-	return br, nil
+	return cm, nil
 }
