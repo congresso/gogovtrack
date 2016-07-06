@@ -16,7 +16,37 @@ type API struct {
 	baseURL string
 }
 
-// R is
-func (a *API) R(name string) *Resource {
-	return &Resource{Name: name, api: a}
+// NewAPI is
+func NewAPI(client *http.Client, baseURL string) *API {
+	return &API{
+		client:  client,
+		baseURL: baseURL,
+	}
+}
+
+// Br returns a BillResource
+func (a *API) Br() *BillResource {
+	return &BillResource{Name: "bill", api: a}
+}
+
+func (a *API) buildFilterQuery(filters Q) string {
+	// Check to see if we even have filters to build
+	if len(filters) < 1 {
+		return ""
+	}
+
+	isFirst := true
+	query := "?"
+
+	for k, v := range filters {
+		if !isFirst {
+			query += "&" + k + "=" + v
+			continue
+		}
+
+		isFirst = false
+		query += k + "=" + v
+	}
+
+	return query
 }
