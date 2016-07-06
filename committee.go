@@ -12,7 +12,7 @@ type CommitteesResponse struct {
 }
 
 // CommitteeResponse is
-type CommitteeResponse Bill
+type CommitteeResponse Committee
 
 // Committee is
 type Committee struct {

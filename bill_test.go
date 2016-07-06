@@ -1,14 +1,9 @@
 package gogovtrack
 
-import (
-	"net/http"
-	"testing"
-)
+import "testing"
 
 func b() *BillResource {
-	a := NewAPI(http.DefaultClient, baseURL)
-
-	return a.Br()
+	return testAPI.Br()
 }
 
 func TestFilter(t *testing.T) {

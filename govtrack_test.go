@@ -2,9 +2,20 @@ package gogovtrack
 
 import (
 	"net/http"
+	"os"
 	"reflect"
 	"testing"
 )
+
+var (
+	testAPI *API
+)
+
+func TestMain(m *testing.M) {
+	testAPI = NewAPI(http.DefaultClient, baseURL)
+
+	os.Exit(m.Run())
+}
 
 func TestNewAPI(t *testing.T) {
 	a := NewAPI(http.DefaultClient, baseURL)
@@ -15,13 +26,11 @@ func TestNewAPI(t *testing.T) {
 }
 
 func TestBuildFilterQuery(t *testing.T) {
-	a := NewAPI(http.DefaultClient, baseURL)
-
 	expected := "?id=1&limit=200"
 
 	query := Q{"id": "1", "limit": "200"}
 
-	result := a.buildFilterQuery(query)
+	result := testAPI.buildFilterQuery(query)
 
 	if result != expected {
 		t.Errorf("Expected query to equal %s but got %s", expected, result)
@@ -29,9 +38,7 @@ func TestBuildFilterQuery(t *testing.T) {
 }
 
 func TestBr(t *testing.T) {
-	a := NewAPI(http.DefaultClient, baseURL)
-
-	br := a.Br()
+	br := testAPI.Br()
 
 	if reflect.TypeOf(br) != reflect.TypeOf(new(BillResource)) {
 		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(BillResource)), reflect.TypeOf(br))
@@ -39,9 +46,7 @@ func TestBr(t *testing.T) {
 }
 
 func TestCo(t *testing.T) {
-	a := NewAPI(http.DefaultClient, baseURL)
-
-	co := a.Co()
+	co := testAPI.Co()
 
 	if reflect.TypeOf(co) != reflect.TypeOf(new(CommitteeResource)) {
 		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(CommitteeResource)), reflect.TypeOf(co))
