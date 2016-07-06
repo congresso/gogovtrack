@@ -6,7 +6,7 @@ func b() *BillResource {
 	return testAPI.Br()
 }
 
-func TestFilter(t *testing.T) {
+func TestBillFilter(t *testing.T) {
 	query := Q{"id": "1", "limit": "200"}
 
 	br := b().Filter(query)
@@ -16,7 +16,7 @@ func TestFilter(t *testing.T) {
 	}
 }
 
-func TestAll(t *testing.T) {
+func TestBillll(t *testing.T) {
 	resp, err := b().All()
 	if err != nil {
 		t.Error(err)
@@ -27,7 +27,7 @@ func TestAll(t *testing.T) {
 	}
 }
 
-func TestOne(t *testing.T) {
+func TestBillOne(t *testing.T) {
 	bill, err := b().One("127129")
 	if err != nil {
 		t.Error(err)

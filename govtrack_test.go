@@ -26,14 +26,17 @@ func TestNewAPI(t *testing.T) {
 }
 
 func TestBuildFilterQuery(t *testing.T) {
-	expected := "?id=1&limit=200"
+	expected1 := "?id=1&limit=200"
+	expected2 := "?limit=200&id=1"
 
 	query := Q{"id": "1", "limit": "200"}
 
 	result := testAPI.buildFilterQuery(query)
 
-	if result != expected {
-		t.Errorf("Expected query to equal %s but got %s", expected, result)
+	if result != expected1 {
+		if result != expected2 {
+			t.Errorf("Expected query to equal %s or %sbut got %s", expected1, expected2, result)
+		}
 	}
 }
 
