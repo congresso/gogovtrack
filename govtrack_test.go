@@ -71,3 +71,11 @@ func TestPr(t *testing.T) {
 		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(PersonResource)), reflect.TypeOf(co))
 	}
 }
+
+func TestRr(t *testing.T) {
+	co := testAPI.Rr()
+
+	if reflect.TypeOf(co) != reflect.TypeOf(new(RoleResource)) {
+		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(RoleResource)), reflect.TypeOf(co))
+	}
+}

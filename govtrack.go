@@ -50,6 +50,11 @@ func (a *API) Pr() *PersonResource {
 	return &PersonResource{Name: "person", api: a}
 }
 
+// Rr returns a RoleResource
+func (a *API) Rr() *RoleResource {
+	return &RoleResource{Name: "role", api: a}
+}
+
 func (a *API) buildFilterQuery(filters Q) string {
 	// Check to see if we even have filters to build
 	if len(filters) < 1 {
