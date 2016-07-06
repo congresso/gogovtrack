@@ -79,3 +79,19 @@ func TestRr(t *testing.T) {
 		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(RoleResource)), reflect.TypeOf(co))
 	}
 }
+
+func TestVV(t *testing.T) {
+	co := testAPI.Vv()
+
+	if reflect.TypeOf(co) != reflect.TypeOf(new(VoteVoterResource)) {
+		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(VoteVoterResource)), reflect.TypeOf(co))
+	}
+}
+
+func TestVr(t *testing.T) {
+	co := testAPI.Vr()
+
+	if reflect.TypeOf(co) != reflect.TypeOf(new(VoteResource)) {
+		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(VoteResource)), reflect.TypeOf(co))
+	}
+}
