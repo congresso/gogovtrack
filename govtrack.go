@@ -3,7 +3,8 @@ package gogovtrack
 import "net/http"
 
 const (
-	baseURL = "https://www.govtrack.us/api/v2"
+	// BaseURL is the base url for the gov track v2 api
+	BaseURL = "https://www.govtrack.us/api/v2"
 )
 
 // Service is a interface that

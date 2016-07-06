@@ -12,13 +12,13 @@ var (
 )
 
 func TestMain(m *testing.M) {
-	testAPI = NewAPI(http.DefaultClient, baseURL)
+	testAPI = NewAPI(http.DefaultClient, BaseURL)
 
 	os.Exit(m.Run())
 }
 
 func TestNewAPI(t *testing.T) {
-	a := NewAPI(http.DefaultClient, baseURL)
+	a := NewAPI(http.DefaultClient, BaseURL)
 
 	if reflect.TypeOf(a) != reflect.TypeOf(new(API)) {
 		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(API)), reflect.TypeOf(a))
