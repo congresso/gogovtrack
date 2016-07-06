@@ -16,9 +16,9 @@ type CommitteeResponse Committee
 
 // Committee is
 type Committee struct {
-	Abrev string `json:"abrev"`
-	Code  string `json:"code"`
-	ID    int    `json:"id"`
+	Abrev       string `json:"abrev"`
+	Code        string `json:"code"`
+	CommitteeID int    `json:"id"`
 }
 
 // CommitteeResource is

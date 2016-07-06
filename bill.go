@@ -7,8 +7,8 @@ import (
 
 // BillsResponse is
 type BillsResponse struct {
-	Meta  Meta   `json:"meta"`
-	Bills []Bill `json:"objects"`
+	Meta  Meta    `json:"meta"`
+	Bills []*Bill `json:"objects"`
 }
 
 // BillResponse is
@@ -20,7 +20,7 @@ type Bill struct {
 	BillType           string   `json:"bill_type"`
 	Committess         []string `json:"committess"`
 	Congress           int      `json:"congress"`
-	ID                 int      `json:"id"`
+	BillID             int      `json:"id"`
 }
 
 // BillResource is

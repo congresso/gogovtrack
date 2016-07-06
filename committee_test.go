@@ -34,7 +34,7 @@ func TestCommitteeOne(t *testing.T) {
 	}
 
 	switch {
-	case committee.ID != 2650:
-		t.Errorf("Expected committee id to equal %d but got %d", 2650, committee.ID)
+	case committee.CommitteeID != 2650:
+		t.Errorf("Expected committee id to equal %d but got %d", 2650, committee.CommitteeID)
 	}
 }
