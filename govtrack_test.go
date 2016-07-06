@@ -28,12 +28,22 @@ func TestBuildFilterQuery(t *testing.T) {
 	}
 }
 
-func TestBR(t *testing.T) {
+func TestBr(t *testing.T) {
 	a := NewAPI(http.DefaultClient, baseURL)
 
 	br := a.Br()
 
 	if reflect.TypeOf(br) != reflect.TypeOf(new(BillResource)) {
 		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(BillResource)), reflect.TypeOf(br))
+	}
+}
+
+func TestCo(t *testing.T) {
+	a := NewAPI(http.DefaultClient, baseURL)
+
+	co := a.Co()
+
+	if reflect.TypeOf(co) != reflect.TypeOf(new(CommitteeResource)) {
+		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(CommitteeResource)), reflect.TypeOf(co))
 	}
 }
