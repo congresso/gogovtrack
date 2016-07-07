@@ -3,7 +3,7 @@ package gogovtrack
 import "testing"
 
 func c() *CommitteeResource {
-	return testAPI.Co()
+	return testAPI.Cr()
 }
 
 func TestCommitteeFilter(t *testing.T) {

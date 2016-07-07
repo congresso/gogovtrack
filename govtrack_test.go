@@ -40,7 +40,7 @@ func TestBuildFilterQuery(t *testing.T) {
 	}
 }
 
-func TestBr(t *testing.T) {
+func TestBillRsrc(t *testing.T) {
 	br := testAPI.Br()
 
 	if reflect.TypeOf(br) != reflect.TypeOf(new(BillResource)) {
@@ -48,16 +48,16 @@ func TestBr(t *testing.T) {
 	}
 }
 
-func TestCo(t *testing.T) {
-	co := testAPI.Co()
+func TestCr(t *testing.T) {
+	co := testAPI.Cr()
 
 	if reflect.TypeOf(co) != reflect.TypeOf(new(CommitteeResource)) {
 		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(CommitteeResource)), reflect.TypeOf(co))
 	}
 }
 
-func TestCs(t *testing.T) {
-	co := testAPI.Cs()
+func TestCsr(t *testing.T) {
+	co := testAPI.Csr()
 
 	if reflect.TypeOf(co) != reflect.TypeOf(new(CosponsorshipResource)) {
 		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(CommitteeResource)), reflect.TypeOf(co))
@@ -80,8 +80,8 @@ func TestRr(t *testing.T) {
 	}
 }
 
-func TestVV(t *testing.T) {
-	co := testAPI.Vv()
+func TestVVr(t *testing.T) {
+	co := testAPI.Vvr()
 
 	if reflect.TypeOf(co) != reflect.TypeOf(new(VoteVoterResource)) {
 		t.Errorf("Expecting api to be type of %v but got %v", reflect.TypeOf(new(VoteVoterResource)), reflect.TypeOf(co))

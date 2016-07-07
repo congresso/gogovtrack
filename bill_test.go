@@ -16,7 +16,7 @@ func TestBillFilter(t *testing.T) {
 	}
 }
 
-func TestBillll(t *testing.T) {
+func TestBillAll(t *testing.T) {
 	resp, err := b().All()
 	if err != nil {
 		t.Error(err)

@@ -3,7 +3,7 @@ package gogovtrack
 import "testing"
 
 func cs() *CosponsorshipResource {
-	return testAPI.Cs()
+	return testAPI.Csr()
 }
 
 func TestCosponsorFilter(t *testing.T) {

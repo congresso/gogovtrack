@@ -5,11 +5,11 @@ import "net/http"
 const (
 	// BaseURL is the base url for the gov track v2 api
 	BaseURL = "https://www.govtrack.us/api/v2"
+	// BillResourceStr is a
+	BillResourceStr = "bill"
+	// CommitteeMemberResourceStr is
+	CommitteeMemberResourceStr = "committee_member"
 )
-
-// Service is a interface that
-type Service interface {
-}
 
 // API is a struct that
 type API struct {
@@ -30,18 +30,18 @@ func (a *API) Br() *BillResource {
 	return &BillResource{Name: "bill", api: a}
 }
 
-// Co returns a CommitteeResource
-func (a *API) Co() *CommitteeResource {
+// Cr returns a CommitteeResource
+func (a *API) Cr() *CommitteeResource {
 	return &CommitteeResource{Name: "committee", api: a}
 }
 
-// Cm returns a CommitteeMemberResource
-func (a *API) Cm() *CommitteeMemberResource {
+// Cmr returns a CommitteeMemberResource
+func (a *API) Cmr() *CommitteeMemberResource {
 	return &CommitteeMemberResource{Name: "committee_member", api: a}
 }
 
-// Cs returns a CosponsorshipResource
-func (a *API) Cs() *CosponsorshipResource {
+// Csr returns a CosponsorshipResource
+func (a *API) Csr() *CosponsorshipResource {
 	return &CosponsorshipResource{Name: "cosponsorship", api: a}
 }
 
@@ -55,8 +55,8 @@ func (a *API) Rr() *RoleResource {
 	return &RoleResource{Name: "role", api: a}
 }
 
-// Vv returns a VoteVoterResource
-func (a *API) Vv() *VoteVoterResource {
+// Vvr returns a VoteVoterResource
+func (a *API) Vvr() *VoteVoterResource {
 	return &VoteVoterResource{Name: "vote_voter", api: a}
 }
 

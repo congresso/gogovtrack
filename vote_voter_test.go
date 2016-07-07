@@ -3,7 +3,7 @@ package gogovtrack
 import "testing"
 
 func vv() *VoteVoterResource {
-	return testAPI.Vv()
+	return testAPI.Vvr()
 }
 
 func TestVoteVoterFilter(t *testing.T) {

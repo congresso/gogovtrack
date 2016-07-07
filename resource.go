@@ -4,7 +4,11 @@ package gogovtrack
 type Q map[string]string
 
 // Resource is
-type Resource interface{}
+type Resource interface {
+	Filter(query Q) interface{}
+	One(id string) interface{}
+	All() interface{}
+}
 
 // Meta is
 type Meta struct {
