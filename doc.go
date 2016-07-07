@@ -7,7 +7,7 @@
 //
 //     api := gogovtrack.NewAPI(http.DefaultClient, gogovtrack.BaseURL)
 //
-//     Examples of how to get one bill, all bills, and filtered bills:
+//Examples of how to get one bill, all bills, and filtered bills:
 //
 //     api.Br().One("id")
 //     api.Br().All()
