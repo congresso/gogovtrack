@@ -9,7 +9,7 @@ api := NewApi(http.DefaultClient, gogovtrack.BaseURL)
 api.Br().All()
 
 // Filtered bills
-billsResp, err := api.Br().Filter(gogovtrack.Q{"limit": "1", "order_by": "-current_status_date"})
+billsResp, err := api.Br().Filter(gogovtrack.Q{"limit": "1", "order_by": "-current_status_date"}).All()
 if err != nil {
   return err
 }
