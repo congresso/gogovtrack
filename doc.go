@@ -5,17 +5,17 @@
 //
 // Examples of how to use the api:
 //
-// api := gogovtrack.NewAPI(http.DefaultClient, gogovtrack.BaseURL)
+//     api := gogovtrack.NewAPI(http.DefaultClient, gogovtrack.BaseURL)
 //
-// Examples of how to get one bill, all bills, and filtered bills:
+//     Examples of how to get one bill, all bills, and filtered bills:
 //
-// api.Br().One("id")
-// api.Br().All()
-// api.Br().Filter(gogovtrack.Q{"limit": "15", "order_by": "-current_status_date""}).All()
+//     api.Br().One("id")
+//     api.Br().All()
+//     api.Br().Filter(gogovtrack.Q{"limit": "15", "order_by": "-current_status_date""}).All()
 //
 // Examples of how to get one committes, all committes, filtered committes
 //
-// api.Cr().One("id")
-// api.Cr().All()
-// api.Cr().Filter(gogovtrack.Q{"limit": "10"}).All()
+//     api.Cr().One("id")
+//     api.Cr().All()
+//     api.Cr().Filter(gogovtrack.Q{"limit": "10"}).All()
 package gogovtrack
