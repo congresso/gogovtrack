@@ -1,9 +1,6 @@
 package gogovtrack
 
-import (
-	"fmt"
-	"testing"
-)
+import "testing"
 
 func b() *BillResource {
 	return testAPI.Br()
@@ -40,6 +37,4 @@ func TestBillOne(t *testing.T) {
 	case bill.BillResolutionType != "bill":
 		t.Errorf("Expecting bill type to equal %s but got %s", "bill", bill.BillResolutionType)
 	}
-
-	fmt.Println(bill.MajorActions)
 }
