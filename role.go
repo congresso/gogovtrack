@@ -5,35 +5,35 @@ import (
 	"fmt"
 )
 
-// RolesResponse is
+// RolesResponse is the json response for getting all roles
 type RolesResponse struct {
 	Meta  Meta    `json:"meta"`
 	Roles []*Role `json:"objects"`
 }
 
-// RoleResponse is
+// RoleResponse is the json response for getting a role
 type RoleResponse Role
 
-// Role is
+// Role holds the properties of a role
 type Role struct {
 	RoleID int `json:"id"`
 }
 
-// RoleResource is
+// RoleResource is the resource for the role api
 type RoleResource struct {
 	api     *API
 	Name    string
 	Filters Q
 }
 
-// Filter is
+// Filter is a handy method for adding query filters to the request
 func (r *RoleResource) Filter(query Q) *RoleResource {
 	r.Filters = query
 
 	return r
 }
 
-// All is
+// All prepares and sends the http request to get all roles
 func (r *RoleResource) All() (*RolesResponse, error) {
 	filters := r.api.buildFilterQuery(r.Filters)
 
@@ -52,7 +52,7 @@ func (r *RoleResource) All() (*RolesResponse, error) {
 	return re, nil
 }
 
-// One is
+// One prepares and sends the http request to get a role
 func (r *RoleResource) One(id string) (*RoleResponse, error) {
 	filters := r.api.buildFilterQuery(r.Filters)
 

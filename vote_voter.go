@@ -5,35 +5,35 @@ import (
 	"fmt"
 )
 
-// VoteVotersResponse is
+// VoteVotersResponse is the json response for getting all vote voters
 type VoteVotersResponse struct {
 	Meta       Meta         `json:"meta"`
 	VoteVoters []*VoteVoter `json:"objects"`
 }
 
-// VoteVoterResponse is
+// VoteVoterResponse is the json response for getting a vote voter
 type VoteVoterResponse VoteVoter
 
-// VoteVoter is
+// VoteVoter holds the properties of a vote voter
 type VoteVoter struct {
 	VoteVoterID int `json:"id"`
 }
 
-// VoteVoterResource is
+// VoteVoterResource is the resource for the vote voter api
 type VoteVoterResource struct {
 	api     *API
 	Name    string
 	Filters Q
 }
 
-// Filter is
+// Filter is a handy method for adding query filters to the request
 func (v *VoteVoterResource) Filter(query Q) *VoteVoterResource {
 	v.Filters = query
 
 	return v
 }
 
-// All is
+// All prepares and sends the http request to get all vote voters
 func (v *VoteVoterResource) All() (*VoteVotersResponse, error) {
 	filters := v.api.buildFilterQuery(v.Filters)
 
@@ -52,7 +52,7 @@ func (v *VoteVoterResource) All() (*VoteVotersResponse, error) {
 	return ve, nil
 }
 
-// One is
+// One prepares and sends the http request to get a vote voter
 func (v *VoteVoterResource) One(id string) (*VoteVoterResponse, error) {
 	filters := v.api.buildFilterQuery(v.Filters)
 

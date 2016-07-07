@@ -37,7 +37,7 @@ func (b *BillResource) Filter(query Q) *BillResource {
 	return b
 }
 
-// All gets all the bills
+// All prepares and sends the http request to get all the bills
 func (b *BillResource) All() (*BillsResponse, error) {
 	filters := b.api.buildFilterQuery(b.Filters)
 
@@ -56,7 +56,7 @@ func (b *BillResource) All() (*BillsResponse, error) {
 	return br, nil
 }
 
-// One gets one bill by id
+// One prepares and sends the http request to get a bill by id
 func (b *BillResource) One(id string) (*BillResponse, error) {
 	filters := b.api.buildFilterQuery(b.Filters)
 

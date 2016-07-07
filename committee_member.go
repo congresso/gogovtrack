@@ -33,7 +33,7 @@ func (c *CommitteeMemberResource) Filter(query Q) *CommitteeMemberResource {
 	return c
 }
 
-// All gets all the committee members
+// All prepares and sends the http request to get all the committee members
 func (c *CommitteeMemberResource) All() (*CommitteeMembersResponse, error) {
 	filters := c.api.buildFilterQuery(c.Filters)
 
@@ -52,7 +52,7 @@ func (c *CommitteeMemberResource) All() (*CommitteeMembersResponse, error) {
 	return cm, nil
 }
 
-// One gets on committee member by id
+// One prepares and sends the http request to get a committee member by id
 func (c *CommitteeMemberResource) One(id string) (*CommitteeMemberResponse, error) {
 	filters := c.api.buildFilterQuery(c.Filters)
 

@@ -5,35 +5,35 @@ import (
 	"fmt"
 )
 
-// CosponsorshipsResponse is
+// CosponsorshipsResponse is the json response for getting all cosponsorships
 type CosponsorshipsResponse struct {
 	Meta           Meta             `json:"meta"`
 	Cosponsorships []*Cosponsorship `json:"objects"`
 }
 
-// CosponsorshipResponse is
+// CosponsorshipResponse is the json response for getting a cosponsorship
 type CosponsorshipResponse Cosponsorship
 
-// Cosponsorship is
+// Cosponsorship is struct that holds the properties of a cosponsorship
 type Cosponsorship struct {
 	CosponrshipID int `json:"id"`
 }
 
-// CosponsorshipResource is
+// CosponsorshipResource is the resource for the cosponsorship api
 type CosponsorshipResource struct {
 	api     *API
 	Name    string
 	Filters Q
 }
 
-// Filter is
+// Filter is a handy method for adding query filters to the request
 func (c *CosponsorshipResource) Filter(query Q) *CosponsorshipResource {
 	c.Filters = query
 
 	return c
 }
 
-// All is
+// All prepares and sends the http request to get all the cosponsorships
 func (c *CosponsorshipResource) All() (*CosponsorshipsResponse, error) {
 	filters := c.api.buildFilterQuery(c.Filters)
 
@@ -52,7 +52,7 @@ func (c *CosponsorshipResource) All() (*CosponsorshipsResponse, error) {
 	return co, nil
 }
 
-// One is
+// One prepares and sends the http request to get a cosponsorship
 func (c *CosponsorshipResource) One(id string) (*CosponsorshipResponse, error) {
 	filters := c.api.buildFilterQuery(c.Filters)
 

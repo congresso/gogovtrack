@@ -5,35 +5,35 @@ import (
 	"fmt"
 )
 
-// PersonsResponse is
+// PersonsResponse is the json response for getting all persons
 type PersonsResponse struct {
 	Meta    Meta      `json:"meta"`
 	Persons []*Person `json:"objects"`
 }
 
-// PersonResponse is
+// PersonResponse is the json response for getting a person
 type PersonResponse Person
 
-// Person is
+// Person holds the properties of a person
 type Person struct {
 	PersonID int `json:"id"`
 }
 
-// PersonResource is
+// PersonResource is the resource for the person api
 type PersonResource struct {
 	api     *API
 	Name    string
 	Filters Q
 }
 
-// Filter is
+// Filter is a handy method for adding query filters to the request
 func (p *PersonResource) Filter(query Q) *PersonResource {
 	p.Filters = query
 
 	return p
 }
 
-// All is
+// All prepares and sends the http request to get all persons
 func (p *PersonResource) All() (*PersonsResponse, error) {
 	filters := p.api.buildFilterQuery(p.Filters)
 
@@ -52,7 +52,7 @@ func (p *PersonResource) All() (*PersonsResponse, error) {
 	return pe, nil
 }
 
-// One is
+// One prepares and sends the http request to get a person
 func (p *PersonResource) One(id string) (*PersonResponse, error) {
 	filters := p.api.buildFilterQuery(p.Filters)
 
