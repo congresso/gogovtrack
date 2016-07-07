@@ -25,42 +25,42 @@ func NewAPI(client *http.Client, baseURL string) *API {
 	}
 }
 
-// Br returns a BillResource
+// Br returns a new BillResource
 func (a *API) Br() *BillResource {
 	return &BillResource{Name: "bill", api: a}
 }
 
-// Cr returns a CommitteeResource
+// Cr returns a new CommitteeResource
 func (a *API) Cr() *CommitteeResource {
 	return &CommitteeResource{Name: "committee", api: a}
 }
 
-// Cmr returns a CommitteeMemberResource
+// Cmr returns a new CommitteeMemberResource
 func (a *API) Cmr() *CommitteeMemberResource {
 	return &CommitteeMemberResource{Name: "committee_member", api: a}
 }
 
-// Csr returns a CosponsorshipResource
+// Csr returns a new CosponsorshipResource
 func (a *API) Csr() *CosponsorshipResource {
 	return &CosponsorshipResource{Name: "cosponsorship", api: a}
 }
 
-// Pr returns a PersonResource
+// Pr returns a new PersonResource
 func (a *API) Pr() *PersonResource {
 	return &PersonResource{Name: "person", api: a}
 }
 
-// Rr returns a RoleResource
+// Rr returns a new RoleResource
 func (a *API) Rr() *RoleResource {
 	return &RoleResource{Name: "role", api: a}
 }
 
-// Vvr returns a VoteVoterResource
+// Vvr returns a new VoteVoterResource
 func (a *API) Vvr() *VoteVoterResource {
 	return &VoteVoterResource{Name: "vote_voter", api: a}
 }
 
-// Vr returns a VoteResource
+// Vr returns a new VoteResource
 func (a *API) Vr() *VoteResource {
 	return &VoteResource{Name: "vote", api: a}
 }

@@ -5,35 +5,35 @@ import (
 	"fmt"
 )
 
-// CommitteeMembersResponse is
+// CommitteeMembersResponse is the json response for getting all committee members
 type CommitteeMembersResponse struct {
 	Meta             Meta               `json:"meta"`
 	CommitteeMembers []*CommitteeMember `json:"objects"`
 }
 
-// CommitteeMemberResponse is
+// CommitteeMemberResponse is the json response for getting a committee member
 type CommitteeMemberResponse CommitteeMember
 
-// CommitteeMember is
+// CommitteeMember is struct that holds the properties of a committee member
 type CommitteeMember struct {
 	CommitteeMemberID int `json:"id"`
 }
 
-// CommitteeMemberResource is
+// CommitteeMemberResource is the resource for the committee member api
 type CommitteeMemberResource struct {
 	api     *API
 	Name    string
 	Filters Q
 }
 
-// Filter is
+// Filter is a handy method for adding query filters to the request
 func (c *CommitteeMemberResource) Filter(query Q) *CommitteeMemberResource {
 	c.Filters = query
 
 	return c
 }
 
-// All is
+// All gets all the committee members
 func (c *CommitteeMemberResource) All() (*CommitteeMembersResponse, error) {
 	filters := c.api.buildFilterQuery(c.Filters)
 
@@ -52,7 +52,7 @@ func (c *CommitteeMemberResource) All() (*CommitteeMembersResponse, error) {
 	return cm, nil
 }
 
-// One is
+// One gets on committee member by id
 func (c *CommitteeMemberResource) One(id string) (*CommitteeMemberResponse, error) {
 	filters := c.api.buildFilterQuery(c.Filters)
 

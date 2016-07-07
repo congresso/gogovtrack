@@ -5,16 +5,16 @@ import (
 	"fmt"
 )
 
-// BillsResponse is
+// BillsResponse is the json response for getting all bills
 type BillsResponse struct {
 	Meta  Meta    `json:"meta"`
 	Bills []*Bill `json:"objects"`
 }
 
-// BillResponse is
+// BillResponse is the json response for getting a bill
 type BillResponse Bill
 
-// Bill is
+// Bill is holds the properties of what makes up a bill
 type Bill struct {
 	BillResolutionType string   `json:"bill_resolution_type"`
 	BillType           string   `json:"bill_type"`
@@ -23,21 +23,21 @@ type Bill struct {
 	BillID             int      `json:"id"`
 }
 
-// BillResource is
+// BillResource is the bill's resource
 type BillResource struct {
 	api     *API
 	Name    string
 	Filters Q
 }
 
-// Filter is
+// Filter is a handy method for adding query filters to the request
 func (b *BillResource) Filter(query Q) *BillResource {
 	b.Filters = query
 
 	return b
 }
 
-// All is
+// All gets all the bills
 func (b *BillResource) All() (*BillsResponse, error) {
 	filters := b.api.buildFilterQuery(b.Filters)
 
@@ -56,7 +56,7 @@ func (b *BillResource) All() (*BillsResponse, error) {
 	return br, nil
 }
 
-// One is
+// One gets one bill by id
 func (b *BillResource) One(id string) (*BillResponse, error) {
 	filters := b.api.buildFilterQuery(b.Filters)
 
