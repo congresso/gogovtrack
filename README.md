@@ -1,6 +1,8 @@
-## Go Govtrack API
+# Go Govtrack API
 
-#Usage
+[https://godoc.org/github.com/congresso/gogovtrack](https://godoc.org/github.com/congresso/gogovtrack)
+
+##Usage
 
 ```go
 api := NewApi(http.DefaultClient, gogovtrack.BaseURL)
