@@ -1,7 +1,7 @@
 // Package gogovtrack examples:
 //
 //    client := gogovtrack.Client{
-//      Client: http.DefaultClient,
+//      HTTPClient: http.DefaultClient,
 //    }
 //
 //     b, err := client.GetBill(1)

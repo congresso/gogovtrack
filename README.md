@@ -6,7 +6,7 @@
 
 ```go
   client := gogovtrack.Client{
-    Client: http.DefaultClient,
+    HTTPClient: http.DefaultClient,
   }
 
   // Get One
