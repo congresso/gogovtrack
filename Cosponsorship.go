@@ -1,6 +1,6 @@
 package gogovtrack
 
-// Cosponshorship is
-type Cosponshorship struct {
+// Cosponsorship is
+type Cosponsorship struct {
 	CosponshorshipID int `json:"id"`
 }

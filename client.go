@@ -158,11 +158,65 @@ func (c *Client) GetCommitteeMember(id int) (CommitteeMember, error) {
 
 // GetCommitteeMembers is
 func (c *Client) GetCommitteeMembers() ([]CommitteeMember, error) {
-	var p []CommitteeMember
-	if err := c.request(c.urlBase("committe_member"), &p); err != nil {
-		return p, err
+	var cm []CommitteeMember
+	if err := c.request(c.urlBase("committe_member"), &cm); err != nil {
+		return cm, err
 	}
-	return p, nil
+	return cm, nil
+}
+
+// GetCosponsorship is
+func (c *Client) GetCosponsorship(id int) (Cosponsorship, error) {
+	var cp Cosponsorship
+	if err := c.request(c.urlBase("cosponsorship"), &cp); err != nil {
+		return cp, err
+	}
+	return cp, nil
+}
+
+// GetCosponsorships is
+func (c *Client) GetCosponsorships() ([]Cosponsorship, error) {
+	var cp []Cosponsorship
+	if err := c.request(c.urlBase("cosponsorship"), &cp); err != nil {
+		return cp, err
+	}
+	return cp, nil
+}
+
+// GetVoteVoter is
+func (c *Client) GetVoteVoter(id int) (VoteVoter, error) {
+	var vv VoteVoter
+	if err := c.request(c.urlBase("vote_voter"), &vv); err != nil {
+		return vv, err
+	}
+	return vv, nil
+}
+
+// GetVoteVoters is
+func (c *Client) GetVoteVoters() ([]VoteVoter, error) {
+	var vv []VoteVoter
+	if err := c.request(c.urlBase("vote_voter"), &vv); err != nil {
+		return vv, err
+	}
+	return vv, nil
+}
+
+// GetVote is
+func (c *Client) GetVote(id int) (Vote, error) {
+	var v Vote
+	if err := c.request(c.urlBase("vote"), &v); err != nil {
+		return v, err
+	}
+	return v, nil
+}
+
+// GetVotes is
+func (c *Client) GetVotes() ([]Vote, error) {
+	var v []Vote
+	if err := c.request(c.urlBase("vote"), &v); err != nil {
+		return v, err
+	}
+	return v, nil
 }
 
 // Filter is
