@@ -37,7 +37,7 @@ type Bill struct {
 	Source                      string        `json:"source"`
 	SourceLink                  *string       `json:"source_link"`
 	Sponsor                     Person        `json:"sponsor"`
-	SponsorRole                 Role          `json:"sponsor_role"`
+	SponsorRole                 EmbeddedRole  `json:"sponsor_role"`
 	Terms                       []Term        `json:"terms"`
 	Title                       string        `json:"title"`
 	TitleWithoutNumber          string        `json:"title_without_number"`

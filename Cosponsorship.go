@@ -11,5 +11,10 @@ type CosponsorshipResponse Cosponsorship
 
 // Cosponsorship is
 type Cosponsorship struct {
-	CosponshorshipID int `json:"id"`
+	CosponshorshipID int         `json:"id"`
+	Bill             int         `json:"bill"`
+	Joined           string      `json:"joined"`
+	Person           int         `json:"person"`
+	Role             int         `json:"role"`
+	Withdrawn        interface{} `json:"withdrawn"`
 }

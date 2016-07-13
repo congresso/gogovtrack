@@ -7,9 +7,30 @@ type CommitteesResponse struct {
 }
 
 // CommitteeResponse is
-type CommitteeResponse Committee
+type CommitteeResponse struct {
+	Abbrev           string      `json:"abbrev"`
+	Code             string      `json:"code"`
+	Committee        Committee   `json:"committee"`
+	CommitteeType    string      `json:"committee_type"`
+	CommitteeID      int         `json:"id"`
+	Jurisdiction     interface{} `json:"jurisdiction"`
+	JurisdictionLink interface{} `json:"jurisdiction_link"`
+	Name             string      `json:"name"`
+	Obsolete         bool        `json:"obsolete"`
+	URL              string      `json:"url"`
+}
 
 // Committee is
 type Committee struct {
-	CommitteeID int `json:"id"`
+	Abbrev             string      `json:"abbrev"`
+	Code               string      `json:"code"`
+	Committee          interface{} `json:"committee"`
+	CommitteeType      string      `json:"committee_type"`
+	CommitteeTypeLabel string      `json:"committee_type_label"`
+	ID                 int         `json:"id"`
+	Jurisdiction       interface{} `json:"jurisdiction"`
+	JurisdictionLink   interface{} `json:"jurisdiction_link"`
+	Name               string      `json:"name"`
+	Obsolete           bool        `json:"obsolete"`
+	URL                string      `json:"url"`
 }

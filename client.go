@@ -55,7 +55,7 @@ func (c *Client) request(u string, jsonResp interface{}) error {
 
 	if err := json.NewDecoder(&b).Decode(jsonResp); err != nil {
 		return &ErrNotExpectedJSON{
-			OriginalBody: debug,
+			OriginalBody: "",
 			Err:          err,
 		}
 	}

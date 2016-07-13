@@ -19,13 +19,13 @@ func TestMain(m *testing.M) {
 }
 
 func TestGetBill(t *testing.T) {
-	b, err := testClient.GetBill(127129)
+	b, err := testClient.GetBill(11586)
 	if err != nil {
 		t.Error(err)
 	}
 
-	if b.BillID != 127129 {
-		t.Errorf("Expected bill to id to equal %d but got %d", 127129, b.BillID)
+	if b.BillID != 11586 {
+		t.Errorf("Expected bill to id to equal %d but got %d", 11586, b.BillID)
 	}
 }
 
