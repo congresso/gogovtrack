@@ -14,7 +14,7 @@
 //       log.Fatal(err)
 //     }
 //
-//     rs, err := client.Filter(gogovtrack.Q{"limit": "20", "id": "1"})
+//     rs, err := client.Filter(gogovtrack.Q{"limit": "20", "id": "1"}).GetRoles()
 //     if err != nil {
 //       log.Fatal(err)
 //     }
