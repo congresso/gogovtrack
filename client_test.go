@@ -12,7 +12,7 @@ var (
 
 func TestMain(m *testing.M) {
 	testClient = &Client{
-		Client: http.DefaultClient,
+		HTTPClient: http.DefaultClient,
 	}
 
 	os.Exit(m.Run())

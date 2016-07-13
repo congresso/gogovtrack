@@ -23,9 +23,9 @@ type Meta struct {
 
 // Client is the base for interacting with the go govtrack API.
 type Client struct {
-	Client  *http.Client
-	BaseURL string
-	filters map[string]string
+	HTTPClient *http.Client
+	BaseURL    string
+	filters    map[string]string
 }
 
 func (c *Client) request(u string, jsonResp interface{}) error {
@@ -35,7 +35,7 @@ func (c *Client) request(u string, jsonResp interface{}) error {
 		return err
 	}
 
-	resp, err := c.Client.Do(req)
+	resp, err := c.HTTPClient.Do(req)
 	if err != nil {
 		return err
 	}
