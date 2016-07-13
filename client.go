@@ -11,24 +11,14 @@ import (
 // DefaultBaseURL is where govtrack expects its api calls
 const DefaultBaseURL = "https://www.govtrack.us/api/v2"
 
-// ErrBadStatusCode is returned when the API returns a non 200 error code
-type ErrBadStatusCode struct {
-	OriginalBody string
-	Code         int
-}
+// Q is
+type Q map[string]string
 
-func (e *ErrBadStatusCode) Error() string {
-	return fmt.Sprintf("Invalid status code: %d", e.Code)
-}
-
-// ErrNotExpectedJSON is returned by API calls when the response isn't expected JSON
-type ErrNotExpectedJSON struct {
-	OriginalBody string
-	Err          error
-}
-
-func (e *ErrNotExpectedJSON) Error() string {
-	return fmt.Sprintf("Unexpected JSON: %s from %s", e.Err.Error(), e.OriginalBody)
+// Meta is
+type Meta struct {
+	Limit      int `json:"limit"`
+	Offset     int `json:"offset"`
+	TotalCount int `json:"total_count"`
 }
 
 // Client is the base for interacting with the go govtrack API.
@@ -39,7 +29,8 @@ type Client struct {
 }
 
 func (c *Client) request(u string, jsonResp interface{}) error {
-	req, err := http.NewRequest("GET", u, nil)
+	fullURL := fmt.Sprintf("%s%s", u, c.buildFilterQuery())
+	req, err := http.NewRequest("GET", fullURL, nil)
 	if err != nil {
 		return err
 	}
@@ -76,17 +67,17 @@ func (c *Client) request(u string, jsonResp interface{}) error {
 }
 
 // GetBill is
-func (c *Client) GetBill(id int) (Bill, error) {
-	var b Bill
-	if err := c.request(c.urlBase("bill"), &b); err != nil {
+func (c *Client) GetBill(id int) (BillResponse, error) {
+	var b BillResponse
+	if err := c.request(fmt.Sprintf("%s/%d", c.urlBase("bill"), id), &b); err != nil {
 		return b, err
 	}
 	return b, nil
 }
 
 // GetBills is
-func (c *Client) GetBills(id int) ([]Bill, error) {
-	var b []Bill
+func (c *Client) GetBills() (BillsResponse, error) {
+	var b BillsResponse
 	if err := c.request(c.urlBase("bill"), &b); err != nil {
 		return b, err
 	}
@@ -94,17 +85,17 @@ func (c *Client) GetBills(id int) ([]Bill, error) {
 }
 
 // GetCommittee is
-func (c *Client) GetCommittee(id int) (Committee, error) {
-	var cm Committee
-	if err := c.request(c.urlBase("committe"), &cm); err != nil {
+func (c *Client) GetCommittee(id int) (CommitteeResponse, error) {
+	var cm CommitteeResponse
+	if err := c.request(fmt.Sprintf("%s/%d", c.urlBase("committee"), id), &cm); err != nil {
 		return cm, err
 	}
 	return cm, nil
 }
 
 // GetCommittees is
-func (c *Client) GetCommittees() ([]Committee, error) {
-	var cm []Committee
+func (c *Client) GetCommittees() (CommitteesResponse, error) {
+	var cm CommitteesResponse
 	if err := c.request(c.urlBase("committe"), &cm); err != nil {
 		return cm, err
 	}
@@ -112,17 +103,17 @@ func (c *Client) GetCommittees() ([]Committee, error) {
 }
 
 // GetRole is
-func (c *Client) GetRole(id int) (Role, error) {
-	var r Role
-	if err := c.request(c.urlBase("role"), &r); err != nil {
+func (c *Client) GetRole(id int) (RoleResponse, error) {
+	var r RoleResponse
+	if err := c.request(fmt.Sprintf("%s/%d", c.urlBase("role"), id), &r); err != nil {
 		return r, err
 	}
 	return r, nil
 }
 
 // GetRoles is
-func (c *Client) GetRoles() ([]Role, error) {
-	var r []Role
+func (c *Client) GetRoles() (RolesResponse, error) {
+	var r RolesResponse
 	if err := c.request(c.urlBase("role"), &r); err != nil {
 		return r, err
 	}
@@ -130,17 +121,17 @@ func (c *Client) GetRoles() ([]Role, error) {
 }
 
 // GetPerson is
-func (c *Client) GetPerson(id int) (Person, error) {
-	var p Person
-	if err := c.request(c.urlBase("person"), &p); err != nil {
+func (c *Client) GetPerson(id int) (PersonResponse, error) {
+	var p PersonResponse
+	if err := c.request(fmt.Sprintf("%s/%d", c.urlBase("person"), id), &p); err != nil {
 		return p, err
 	}
 	return p, nil
 }
 
 // GetPersons is
-func (c *Client) GetPersons() ([]Person, error) {
-	var p []Person
+func (c *Client) GetPersons() (PersonsResponse, error) {
+	var p PersonsResponse
 	if err := c.request(c.urlBase("person"), &p); err != nil {
 		return p, err
 	}
@@ -148,35 +139,35 @@ func (c *Client) GetPersons() ([]Person, error) {
 }
 
 // GetCommitteeMember is
-func (c *Client) GetCommitteeMember(id int) (CommitteeMember, error) {
-	var cm CommitteeMember
-	if err := c.request(c.urlBase("committe_member"), &cm); err != nil {
+func (c *Client) GetCommitteeMember(id int) (CommitteeMemberResponse, error) {
+	var cm CommitteeMemberResponse
+	if err := c.request(fmt.Sprintf("%s/%d", c.urlBase("committee_member"), id), &cm); err != nil {
 		return cm, err
 	}
 	return cm, nil
 }
 
 // GetCommitteeMembers is
-func (c *Client) GetCommitteeMembers() ([]CommitteeMember, error) {
-	var cm []CommitteeMember
-	if err := c.request(c.urlBase("committe_member"), &cm); err != nil {
+func (c *Client) GetCommitteeMembers() (CommitteeMembersResponse, error) {
+	var cm CommitteeMembersResponse
+	if err := c.request(c.urlBase("committee_member"), &cm); err != nil {
 		return cm, err
 	}
 	return cm, nil
 }
 
 // GetCosponsorship is
-func (c *Client) GetCosponsorship(id int) (Cosponsorship, error) {
-	var cp Cosponsorship
-	if err := c.request(c.urlBase("cosponsorship"), &cp); err != nil {
+func (c *Client) GetCosponsorship(id int) (CosponsorshipResponse, error) {
+	var cp CosponsorshipResponse
+	if err := c.request(fmt.Sprintf("%s/%d", c.urlBase("cosponsorship"), id), &cp); err != nil {
 		return cp, err
 	}
 	return cp, nil
 }
 
 // GetCosponsorships is
-func (c *Client) GetCosponsorships() ([]Cosponsorship, error) {
-	var cp []Cosponsorship
+func (c *Client) GetCosponsorships() (CosponsorshipsResponse, error) {
+	var cp CosponsorshipsResponse
 	if err := c.request(c.urlBase("cosponsorship"), &cp); err != nil {
 		return cp, err
 	}
@@ -184,17 +175,17 @@ func (c *Client) GetCosponsorships() ([]Cosponsorship, error) {
 }
 
 // GetVoteVoter is
-func (c *Client) GetVoteVoter(id int) (VoteVoter, error) {
-	var vv VoteVoter
-	if err := c.request(c.urlBase("vote_voter"), &vv); err != nil {
+func (c *Client) GetVoteVoter(id int) (VoteVoterResponse, error) {
+	var vv VoteVoterResponse
+	if err := c.request(fmt.Sprintf("%s/%d", c.urlBase("vote_voter"), id), &vv); err != nil {
 		return vv, err
 	}
 	return vv, nil
 }
 
 // GetVoteVoters is
-func (c *Client) GetVoteVoters() ([]VoteVoter, error) {
-	var vv []VoteVoter
+func (c *Client) GetVoteVoters() (VoteVotersResponse, error) {
+	var vv VoteVotersResponse
 	if err := c.request(c.urlBase("vote_voter"), &vv); err != nil {
 		return vv, err
 	}
@@ -202,17 +193,17 @@ func (c *Client) GetVoteVoters() ([]VoteVoter, error) {
 }
 
 // GetVote is
-func (c *Client) GetVote(id int) (Vote, error) {
-	var v Vote
-	if err := c.request(c.urlBase("vote"), &v); err != nil {
+func (c *Client) GetVote(id int) (VoteResponse, error) {
+	var v VoteResponse
+	if err := c.request(fmt.Sprintf("%s/%d", c.urlBase("vote"), id), &v); err != nil {
 		return v, err
 	}
 	return v, nil
 }
 
 // GetVotes is
-func (c *Client) GetVotes() ([]Vote, error) {
-	var v []Vote
+func (c *Client) GetVotes() (VotesResponse, error) {
+	var v VotesResponse
 	if err := c.request(c.urlBase("vote"), &v); err != nil {
 		return v, err
 	}
@@ -231,4 +222,26 @@ func (c *Client) urlBase(resource string) string {
 		base = DefaultBaseURL
 	}
 	return fmt.Sprintf("%s/%s", base, resource)
+}
+
+func (c *Client) buildFilterQuery() string {
+	// Check to see if we even have filters to build
+	if len(c.filters) < 1 {
+		return ""
+	}
+
+	isFirst := true
+	query := "?"
+
+	for k, v := range c.filters {
+		if !isFirst {
+			query += "&" + k + "=" + v
+			continue
+		}
+
+		isFirst = false
+		query += k + "=" + v
+	}
+
+	return query
 }
